@@ -8,8 +8,8 @@ pipeline {
       }
     }
   }
-  agent { label 'nodejs-app' }
-}
+ }
+ agent { label 'nodejs-app' }
   stages {
     stage('Test') {
       steps {
