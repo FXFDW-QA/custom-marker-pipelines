@@ -26,5 +26,6 @@ stage('Build and Push Image') {
       }
       steps {
          echo "TODO - build and push image"
+         sh 'java -version'
       }
     }
