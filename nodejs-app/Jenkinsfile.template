@@ -1,16 +1,11 @@
 pipeline {
   agent none
-  stages {
-    stage('Say Hello') {
-      steps {
-        echo 'Hello World!'   
-        sh 'java -version'
-      }
-    }
+  options { 
+    buildDiscarder(logRotator(numToKeepStr: '2'))
   }
- }
   stages {
     stage('Test') {
+      agent { label 'nodejs-app' }
       steps {
         container('nodejs') {
           echo 'Hello World!'   
@@ -18,14 +13,14 @@ pipeline {
         }
       }
     }
-  }
-stage('Build and Push Image') {
+    stage('Build and Push Image') {
       when {
-        beforeAgent true
-        branch 'master'
+         beforeAgent true
+         branch 'master'
       }
       steps {
-        echo "TODO - build and push image"
-        sh 'java -version'
+         echo "TODO - build and push image"
       }
     }
+  }
+}
